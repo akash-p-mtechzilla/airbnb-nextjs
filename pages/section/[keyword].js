@@ -7,7 +7,8 @@ const NavSections = ({ image }) => {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      pl="7%"
+      pl='7%'
+      // pl={['5%', '5%', '5%', '7%', "7%"]}
       pr="5%"
       flexDirection={["column", "column", "row", "row", "row"]}
       flexWrap="wrap"

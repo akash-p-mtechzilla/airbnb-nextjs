@@ -42,7 +42,11 @@ const Navbar = () => {
           </Box>
         </Box>
       </Box>
-      <TabSection />
+
+      <Box>
+
+        <TabSection />
+      </Box>
     </Box>
   );
 };

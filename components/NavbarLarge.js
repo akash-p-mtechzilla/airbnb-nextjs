@@ -6,6 +6,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { SiAirbnb } from "react-icons/si";
 import { FiGlobe } from "react-icons/fi";
 import TabSection from "./TabSection";
+import Filter from './Filter.js'
 
 const NavbarLarge = () => {
   return (
@@ -23,11 +24,11 @@ const NavbarLarge = () => {
       >
         <Box
           display="flex"
+          justifyContent='space-evenly'
           color="#ff385c"
           fontWeight="semibold"
           fontSize="2rem"
           alignItems="center"
-          justifyContent="space-between"
           px="5"
         >
           <SiAirbnb m="0.5rem" />
@@ -123,7 +124,15 @@ const NavbarLarge = () => {
         </Box>
       </Box>
 
-      <TabSection />
+      <Box
+        display='flex'
+      >
+
+        <TabSection />
+        <Filter />
+
+      </Box>
+
     </Box>
   );
 };

@@ -1,4 +1,5 @@
-import { Box, Text } from "@chakra-ui/react";
+
+import { Box } from "@chakra-ui/react";
 import Tabitems from "./Tabitems";
 
 const sectionData = [
@@ -25,12 +26,12 @@ const sectionData = [
 const TabSection = () => {
   return (
     <Box
-      px="5%"
+      ml="5%"
       display="flex"
-      // alignItems={[null, null, null, "center", "center"]}
       alignItems="center"
       style={{ overflowX: "scroll" }}
       h={[null, null, "5rem", "5rem", "5rem"]}
+      w={[null, null, '90vw', '90vw', '90vw']}
       pt={[null, null, null, "1rem", "1rem"]}
     >
       {sectionData.map((item) => {

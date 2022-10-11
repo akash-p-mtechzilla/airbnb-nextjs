@@ -1,7 +1,13 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import ImageCard from "../../components/ImageCard";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const NavSections = ({ image }) => {
+
+  const r = useRouter()
+  const { keyword } = r.query
+
   return (
     <Box
       display="flex"
@@ -15,9 +21,18 @@ const NavSections = ({ image }) => {
       py="1.5rem"
       pt="22vh"
     >
+
+
+
       {image.hits.map((obj) => {
         return <ImageCard obj={obj} key={obj.id} />;
       })}
+
+      {/* </a> */}
+
+
+
+
     </Box>
   );
 };

@@ -1,3 +1,4 @@
+
 import ImageCard from "../components/ImageCard";
 import { Box } from "@chakra-ui/react";
 

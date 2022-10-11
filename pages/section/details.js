@@ -131,7 +131,7 @@ const DetailsPage = () => {
                   Bedroom 1
                 </StatNumber>
 
-                <StatLabel fontWeight={'medium'} isTruncated>
+                <StatLabel fontWeight={'medium'} >
                   1 king bed
                 </StatLabel>
               </Stat>

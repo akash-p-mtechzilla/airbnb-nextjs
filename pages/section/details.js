@@ -2,6 +2,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css';
 import React, { useState, useEffect } from 'react'
 import {
+  Divider,
   Input,
   Text, Heading, Box, Flex, Img,
   SimpleGrid,
@@ -52,8 +53,6 @@ const DetailsPage = () => {
 
 
 
-
-
   return <Box pt='21vh' px='5%'>
 
     <Box>
@@ -75,12 +74,14 @@ const DetailsPage = () => {
           .
           <Text fontSize='1rem' textDecoration='underline'>Abiansemal, Bali ,indonesia</Text>
         </Flex>
-        <Flex>
-          <Text>
-            share
+        <Flex alignItems={'center'} justifyContent={'center'} >
+          &#9735;
+          <Text fontSize='1rem' textDecoration='underline'>
+            Share
           </Text>
-
-          <Text>save</Text>
+          <Box p='5px'></Box>
+          &#9825;
+          <Text fontSize='1rem' textDecoration='underline'>  Save</Text>
         </Flex>
 
       </Flex>
@@ -103,10 +104,13 @@ const DetailsPage = () => {
           justifyContent='space-between'
         >
           <Box>
-            <Text>Entire villa hosted by Wayan</Text>
-            <Text>10 guests * 5 bed rooms * 5beds * 4.5 bathrooms </Text>
+
+            <Text fontSize='1.7rem'
+            >
+              Entire villa hosted by Wayan
+            </Text>
+            <Text>10 guests &#x2022; 5 bed rooms &#x2022; 5 beds &#x2022;  4.5 bathrooms </Text>
           </Box>
-          {/* <BsPersonCircle fontSize='3rem' /> */}
           <Img h={'3rem'} borderRadius='50%' name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
         </Flex>
 
@@ -139,6 +143,7 @@ const DetailsPage = () => {
           <Heading fontSize='1rem' textDecoration='underline'>Learn more... </Heading>
         </Box>
 
+        <Divider />
 
         <Box p='2rem' >
           <Text mt={4}>A unique bamboo house and a work of art. Both the river valley view & interior are remarkable, providing such a marvelous feast to the eyes that guests find it extraordinary to live so in touch with nature but in complete luxury</Text>
@@ -147,6 +152,12 @@ const DetailsPage = () => {
 
           <Heading fontSize='1rem' textDecoration='underline'>Learn more... </Heading>
         </Box>
+
+
+        <Divider />
+
+
+
         <Box p='2rem'>
 
           <Text fontSize='1.7rem'
@@ -179,9 +190,9 @@ const DetailsPage = () => {
                 border={'1px solid'}
                 borderColor='gray.400'
                 rounded={'lg'}>
-                <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
+                <Box fontSize={'2xl'} fontWeight={'medium'}>
                   Bedroom 2
-                </StatNumber>
+                </Box>
 
                 <StatLabel fontWeight={'medium'} >
                   1 king bed
@@ -214,7 +225,11 @@ const DetailsPage = () => {
 
       <Box
         w='40%'
-        p='5rem'
+        p='4.5rem'
+        display='flex'
+        flexDirection={'column'}
+        // alignItems={'center'}
+        justifyContent='center'
       >
 
         <Box
@@ -236,7 +251,7 @@ const DetailsPage = () => {
               <Text> night</Text>
             </Flex>
 
-            <Text textDecoration={'underline'} fontWeight={'bold'} color='gray.600'>1 review</Text>
+            <Text textDecoration={'underline'} fontWeight={'bold'} color='gray.600'>150 reviews</Text>
           </Flex>
 
           <Box
@@ -302,13 +317,13 @@ const DetailsPage = () => {
             color='gray.700'
           >
             <Flex justifyContent={'space-between'} >
-              <Text textDecoration={'underline'}>$25,116 x 5 nights</Text>
-              <Text>1,25,580</Text>
+              <Text textDecoration={'underline'}> 20435 x  {endDate.getDate() - startDate.getDate()} nights</Text>
+              <Text>{getTotal(0)}</Text>
             </Flex>
 
             <Flex justifyContent={'space-between'}>
               <Text textDecoration={'underline'}>Discount</Text>
-              <Text>2,580</Text>
+              <Text color={'green.600'} fontWeight='bold'>-2,580</Text>
             </Flex>
 
             <Flex justifyContent={'space-between'}>
@@ -339,8 +354,11 @@ const DetailsPage = () => {
 
     </Flex>
 
-    <Flex>
-      <Box w='2rem'>.</Box>
+    <Divider />
+
+
+    <Flex py='3rem'>
+      <Box w='2rem'></Box>
       <DateRange ranges={[range]}
         minDate={new Date()}
         rangeColors={['#ff385c']}

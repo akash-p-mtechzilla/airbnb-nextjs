@@ -26,6 +26,7 @@ const sectionData = [
 const TabSection = () => {
   return (
     <Box
+      bg={'white'}
       ml="5%"
       display="flex"
       alignItems="center"

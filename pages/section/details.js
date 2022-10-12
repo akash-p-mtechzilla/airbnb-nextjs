@@ -1,6 +1,7 @@
-import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import React, { useState, useEffect } from 'react'
+import Image from "next/image";
 import {
   Divider,
   Input,
@@ -91,7 +92,7 @@ const DetailsPage = () => {
 
     {/* ======================== */}
 
-    <Flex borderColor='blue'
+    <Flex
     >
       <Flex
         w='60%'
@@ -228,7 +229,6 @@ const DetailsPage = () => {
         p='4.5rem'
         display='flex'
         flexDirection={'column'}
-        // alignItems={'center'}
         justifyContent='center'
       >
 
@@ -357,7 +357,7 @@ const DetailsPage = () => {
     <Divider />
 
 
-    <Flex py='3rem'>
+    <Flex pt='3rem'>
       <Box w='2rem'></Box>
       <DateRange ranges={[range]}
         minDate={new Date()}
@@ -367,9 +367,25 @@ const DetailsPage = () => {
         onChange={handleRange}
         showSelectionPreview={true}
         style={{ padding: '2rem' }}
-        p='2rem'
       />
     </Flex>
+
+    <Divider />
+
+    <Box px='5%' pb='5%'>
+
+      <Text fontSize='1.7rem'
+        py='2%'
+      >
+        Where youll be
+      </Text>
+      <Box>
+
+        <Img src='/map.png' w='100%' h='100%' />
+
+      </Box>
+    </Box>
+
 
   </Box >
 }

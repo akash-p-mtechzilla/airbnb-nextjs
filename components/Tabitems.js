@@ -15,7 +15,6 @@ const Tabitems = ({ item }) => {
       as={`/section/${item.word}`}
     >
       <Box
-
         minW={["4rem", "4rem", null, "6rem", "6rem"]}
         className={keyword === item.word ? "open" : ""}
         display="flex"

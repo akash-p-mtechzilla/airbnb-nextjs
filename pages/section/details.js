@@ -2,39 +2,21 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css';
 import React, { useState, useEffect } from 'react'
 import {
-  Button,
+  Input,
   Text, Heading, Box, Flex, Img,
   SimpleGrid,
   Stat,
   StatLabel,
   StatNumber,
-  Avatar
 } from "@chakra-ui/react";
 import { DateRange } from 'react-date-range'
 
 
 const DetailsPage = () => {
 
-
-
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
-
-  const range = {
-    startDate: startDate,
-    endDate: endDate,
-    key: 'selection'
-  }
-
-  const handleRange = (ranges) => {
-
-    console.log(ranges.selection.startDate, ranges.selection.endDate)
-
-    setStartDate(ranges.selection.startDate)
-    setEndDate(ranges.selection.endDate)
-
-  }
-
+  const [guest, setGuest] = useState(1)
 
   const [detailsData, setDetailsData] = useState('')
 
@@ -43,8 +25,36 @@ const DetailsPage = () => {
     setDetailsData(url)
   }, [])
 
+  const getTotal = (discount) => {
 
-  return <Box zIndex={'0'} pt='21vh' px='5%'>
+    let days = endDate.getDate() - startDate.getDate()
+    let ans = 20435 * Number(days) * Number(guest)
+    let discounted = days === 0 ? ans : ans - discount
+
+    return discounted.toLocaleString('en-IN', {
+      maximumFractionDigits: 2,
+      style: 'currency',
+      currency: 'INR'
+    })
+
+  }
+
+  const range = {
+    startDate: startDate,
+    endDate: endDate,
+    key: 'selection'
+  }
+
+  const handleRange = (ranges) => {
+    setStartDate(ranges.selection.startDate)
+    setEndDate(ranges.selection.endDate)
+  }
+
+
+
+
+
+  return <Box pt='21vh' px='5%'>
 
     <Box>
       <Text
@@ -97,7 +107,7 @@ const DetailsPage = () => {
             <Text>10 guests * 5 bed rooms * 5beds * 4.5 bathrooms </Text>
           </Box>
           {/* <BsPersonCircle fontSize='3rem' /> */}
-          <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+          <Img h={'3rem'} borderRadius='50%' name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
         </Flex>
 
         <Box>
@@ -200,6 +210,7 @@ const DetailsPage = () => {
 
       </Flex>
 
+      {/* ======================== */}
 
       <Box
         w='40%'
@@ -207,7 +218,7 @@ const DetailsPage = () => {
       >
 
         <Box
-          h='50vh'
+          h='45%'
           border='1px'
           borderRadius='.7rem'
           borderColor='gray.400'
@@ -215,12 +226,17 @@ const DetailsPage = () => {
           p='1.5rem'
         >
 
-          <Flex justifyContent='space-between'>
-            <Flex>
-              <Text> $25.567</Text>
-              <Text>night</Text>
+          <Flex
+            alignItems={'center'}
+            justifyContent='space-between'>
+            <Flex
+              alignItems={'center'}
+            >
+              <Text fontSize={'1.5rem'} fontWeight='medium'> &#8377;20,435</Text>
+              <Text> night</Text>
             </Flex>
-            <Text>1 review</Text>
+
+            <Text textDecoration={'underline'} fontWeight={'bold'} color='gray.600'>1 review</Text>
           </Flex>
 
           <Box
@@ -238,33 +254,44 @@ const DetailsPage = () => {
 
               <Box borderRight='1px'
                 borderColor='gray.400'
-                w='50%' h='100%' p='.3rem'>
-                <Text fontSize={'.7rem'}>CHECK-IN</Text>
-                <Text>10/12/2022</Text>
+                w='50%' h='100%' p='.45rem'>
+                <Text fontSize={'.65rem'} fontWeight={'bold'} >CHECK-IN</Text>
+                <Text fontSize={'0.9rem'}>
+                  {startDate.getMonth() + 1}/{startDate.getDate()}/{startDate.getFullYear()}
+                </Text>
               </Box>
               <Box
                 borderColor='gray.400'
-                w='50%' h='100%' p='.3rem'>
-                <Text fontSize={'.7rem'}>CHECK-IN</Text>
-                <Text>10/12/2022</Text>
+                w='50%' h='100%' p='.45rem'>
+                <Text fontSize={'.65rem'} fontWeight={'bold'} >CHECK-IN</Text>
+                <Text fontSize={'0.9rem'}>
+                  {endDate.getMonth() + 1}/{endDate.getDate()}/{endDate.getFullYear()}
+                </Text>
               </Box>
             </Box>
-            <Text fontSize={'.7rem'}>CHECK-IN</Text>
-            <Text>10/12/2022</Text>
+            <Box p='.4rem'  >
+
+              <Text fontSize={'.65rem'} fontWeight={'bold'} >NO OF GUESTS</Text>
+              <Text fontSize={'.7rem'}></Text>
+              <Input type='number' size='xs' value={guest} onChange={(e) => setGuest(e.target.value)} defaultValue='1' placeholder='no. of Guests' border='none' _active='none' _focus='none' focusBorderColor='transparent' />
+            </Box>
           </Box>
 
-          <Button
+          <Box
+            display={'flex'}
+            alignItems='center'
+            justifyContent={'center'}
             backgroundColor='#ff385c'
             borderRadius='.5rem'
             color='white'
-            h='10%'
+            h='12%'
             w='100%'
-          >Reserve</Button>
+          >Reserve</Box>
 
           <Flex
             alignItems={'center'}
             p='1rem'>
-            <Text m='auto'> you wont be charged yet</Text>
+            <Text m='auto' fontSize={'0.85rem'} color='gray.700'> you wont be charged yet</Text>
           </Flex>
 
 
@@ -272,6 +299,7 @@ const DetailsPage = () => {
             flexDirection='column'
             justifyContent='space-between'
             h='22%'
+            color='gray.700'
           >
             <Flex justifyContent={'space-between'} >
               <Text textDecoration={'underline'}>$25,116 x 5 nights</Text>
@@ -279,27 +307,28 @@ const DetailsPage = () => {
             </Flex>
 
             <Flex justifyContent={'space-between'}>
-              <Text textDecoration={'underline'}>$25,116 x 5 nights</Text>
-              <Text>1,25,580</Text>
+              <Text textDecoration={'underline'}>Discount</Text>
+              <Text>2,580</Text>
             </Flex>
 
             <Flex justifyContent={'space-between'}>
-              <Text textDecoration={'underline'}>$25,116 x 5 nights</Text>
-              <Text>1,25,580</Text>
+              <Text textDecoration={'underline'}>Service fee</Text>
+              <Text>0</Text>
             </Flex>
           </Flex>
 
           <Flex
             borderTop={'1px'}
             borderColor='gray.400'
-
             mt={'.5rem'}
-            pt={'.5rem'}
+            p={'1rem'}
             alignItems='center'
             justifyContent='space-between'
+            fontSize={'1.1rem'}
+            fontWeight={'bold'}
           >
-            <Text>total before tax</Text>
-            <Text>$100464</Text>
+            <Text>Total before tax</Text>
+            <Text>{getTotal(2580)}</Text>
 
           </Flex>
 
